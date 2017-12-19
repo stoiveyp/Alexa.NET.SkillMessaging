@@ -1,0 +1,7 @@
+﻿{
+  "data": {
+    "notificationTitle": "New Message from Backend",
+    "spokenOutput": "Hi, This is the message sent from Backend."
+  },
+  "expiresAfterSeconds": 60
+}

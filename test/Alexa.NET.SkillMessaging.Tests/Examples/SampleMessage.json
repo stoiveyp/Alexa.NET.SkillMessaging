@@ -1,0 +1,22 @@
+﻿{
+  "version": "1.0",
+  "context": {
+    "System": {
+      "application": {
+        "applicationId": "amzn1.echo-sdk-ams.app.b4277435"
+      },
+      "user": {
+        "userId": "amzn1.ask.account.AGQ3PQ"
+      },
+      "apiAccessToken": "AxThk..."
+    }
+  },
+  "request": {
+    "type": "Messaging.MessageReceived",
+    "requestId": "amzn1.echo-api.request.0000000-0000-0000-0000-00000000000",
+    "timestamp": "2015-05-13T12:34:56Z",
+    "message": {
+      "notice": "<< text of message >>"
+    }
+  }
+}

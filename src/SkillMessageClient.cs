@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -32,16 +33,23 @@ namespace Alexa.NET
         {
             if (message.ExpiresAfter <= 0)
             {
-                throw new InvalidOperationException("Message ExpiresAfter property must be greater than zero");
+                throw new SkillMessagingException("Message ExpiresAfter property must be greater than zero");
             }
 
             if (string.IsNullOrWhiteSpace(userId))
             {
-                throw new InvalidOperationException("User ID has not been set");
+                throw new SkillMessagingException("User ID has not been set");
             }
 
             var response = await Client.PostAsync(userId, new StringContent(JObject.FromObject(message).ToString(), Encoding.UTF8, "application/json"));
-            return response.Headers.GetValues(AmazonRequestId).FirstOrDefault();
+            if (response.StatusCode == HttpStatusCode.Accepted)
+            {
+                return response.Headers.GetValues(AmazonRequestId).FirstOrDefault();
+            }
+            else
+            {
+                throw new SkillMessagingException((int)response.StatusCode);
+            }
         }
     }
 }

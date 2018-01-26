@@ -38,7 +38,7 @@ namespace Alexa.NET.SkillManagement.Tests
         {
             var message = new Message(TestMessageData, 0);
             var messageRequest = new SkillMessageClient(new HttpClient());
-            await Assert.ThrowsAsync<InvalidOperationException>(() => messageRequest.Send(message,UserId));
+            await Assert.ThrowsAsync<SkillMessagingException>(() => messageRequest.Send(message,UserId));
         }
 
         [Fact]
@@ -46,7 +46,7 @@ namespace Alexa.NET.SkillManagement.Tests
         {
             var message = new Message(TestMessageData, 30);
             var messageRequest = new SkillMessageClient(new HttpClient());
-            await Assert.ThrowsAsync<InvalidOperationException>(() => messageRequest.Send(message, string.Empty));
+            await Assert.ThrowsAsync<SkillMessagingException>(() => messageRequest.Send(message, string.Empty));
         }
 
         [Fact]
